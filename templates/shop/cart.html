@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+{% block main %}
+    <div class="uk-container">
+<div class="uk-card uk-card-default uk-card-body" style="min-height: 800px">
+                            <h3 class="uk-card-title">Your cart</h3>
+                            <ul class="uk-list uk-list-divider">
+                                {% for i in object_list %}
+                                <li class="uk-flex">
+                                    <div>
+                                        <h5 class="uk-margin-remove-bottom">{{ i.product.name }} * {{ i.amount }}</h5>
+                                        <span class="uk-text-small">{{ i.product.description }}</span>
+                                    </div>
+                                    <div class="uk-margin-auto-left uk-text-right">{% widthratio i.product.price 1 i.amount %}</div>
+                                </li>
+                                {% endfor %}
+                                <li class="uk-text-bold uk-text-emphasis">
+                                    <span class="">Total(￥)</span>
+                                    <div class="uk-float-right">￥{{ total }}</div>
+                                </li>
+                            </ul>
+{#    <form action="{% url 'shop:check' %}" method="post">{% csrf_token %}#}
+    <button class="uk-button uk-button-primary" type="submit">Check out</button>
+{#            </form>#}
+                        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+用户信息
+{% endblock %}
+
+{% block main %}
+    <div class="uk-container" style="min-height: 800px">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top">
+        <div class="uk-card uk-card-primary uk-card-body uk-width-1-2">
+            <h3 class="uk-card-title" style="text-align: center">UserInfo</h3>
+            <p style="text-align: center">
+                <span style="font-size: 20px; text-align: center">username: {{ request.user.username }}</span><br>
+                <span style="font-size: 20px; text-align: center">address: {{ request.user.address|default_if_none:'未填写' }}</span><br>
+                <span style="font-size: 20px;text-align: center">phone: {{ request.user.phone|default_if_none:'未填写' }}</span><br>
+            </p>
+        </div>
+    </div>
+    <div class="uk-flex uk-flex-center uk-margin-medium-top">
+        <div class="uk-card uk-card-primary uk-card-body uk-width-1-2">
+            <h3 class="uk-card-title" style="text-align: center">UserWallet</h3>
+            <p style="text-align: center">
+                <span style="font-size: 20px; text-align: center">amount: {{ request.user.wallet.amount }}</span><br>
+            </p>
+        </div>
+    </div>
+    </div>
+{% endblock %}

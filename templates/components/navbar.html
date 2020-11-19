@@ -1,0 +1,50 @@
+{% load static %}
+<div uk-sticky="show-on-up: true; animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent;">
+    <nav class="uk-navbar-container uk-visible@m" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="" class="uk-navbar-item uk-logo">
+                <img src="{% static 'img/logo.png' %}" style="height: 40px" alt="">
+            </a>
+
+            <ul class="uk-navbar-nav">
+                <li class="uk-active"><a href="{% url 'shop:index' %}">Index</a></li>
+                <li>
+                    <a href="javascript:;">User</a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="{% url 'user:userinfo' %}">UserInfo</a></li>
+                            <li><a href="{% url 'shop:cart' %}">Cart</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="uk-navbar-right">
+            <div>
+                <a class="uk-navbar-toggle" href="#" uk-search-icon></a>
+                <div class="uk-drop" uk-drop="mode: click; pos: left-center; offset: 0">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-expand">
+                            <form class="uk-search uk-search-navbar uk-width-1-1">
+                                <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+                            </form>
+                        </div>
+                        <div class="uk-width-auto">
+                            <a class="uk-navbar-dropdown-close" href="#" uk-close></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-navbar-item uk-visible@l">
+                {% if not request.user.is_authenticated %}
+                <button class="uk-button uk-button-text" onclick="window.location.href='{% url 'user:login' %}'">Login</button>
+                <a class="uk-button uk-button-primary uk-margin-small-left uk-border-pill" href="{% url 'user:register' %}">Register</a>
+                    {% else %}
+                    <button class="uk-button uk-button-text">{{ request.user.username }}</button>
+                <a class="uk-button uk-button-primary uk-margin-small-left uk-border-pill" href="{% url 'user:logout' %}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>

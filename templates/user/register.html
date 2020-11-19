@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block main %}
+    <div uk-height-viewport class="uk-section uk-section-small uk-flex uk-flex-middle uk-text-center" style="min-height: calc((100vh - 80px) - 0px);">
+        <div class="uk-width-1-1">
+            <div class="uk-container" style="max-width: 330px;">
+                <p class="uk-text-lead">User Register</p>
+                <form action="{% url 'user:register' %}" method="post">{% csrf_token %}
+                        {% include 'user/form.html' %}
+                    <a href="{% url 'user:login' %}">Login</a>
+                    <br>
+                    <button class="uk-button uk-button-primary uk-width-1-1">Register</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

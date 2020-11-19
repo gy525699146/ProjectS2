@@ -1,0 +1,11 @@
+        {% for i in form.errors.values %}
+{{ i|safe }}
+        {% endfor %}
+{{ i|safe }}
+{% for field in form %}
+<div class="uk-margin">
+                        <div class="uk-inline uk-width-1-1">
+                            {{ field  }}
+                        </div>
+                    </div>
+{% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block main %}
+
+
+<div class="uk-container" style="min-height: 800px">
+<div class="uk-child-width-1-1 uk-child-width-1-4" uk-grid>
+
+    {% for i in page_obj %}
+            <div>
+                <div class="uk-card uk-card-default tm-image-card uk-card-hover" onclick="window.location.href='{{ i.get_absolute_url }}'">
+                    <div class="uk-card-media-top">
+                        <img src="/media/{{ i.img }}" alt="" style="height: 250px">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">{{ i.name }}</h3>
+                        <p>{{ i.description|slice:":10" }}</p>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+        </div>
+</div>
+
+
+{% endblock %}

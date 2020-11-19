@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}
+Product Detail
+{% endblock %}
+
+{% block main %}
+
+    <div class="uk-container" style="min-height: 800px">
+
+    <h2>Product: {{ object.name }}</h2>
+        <hr>
+        <img src="/media/{{ object.img }}" alt="" style="height: 300px; width: 300px">
+        <hr>
+    <p>Description: {{ object.description }}</p>
+        <p>Price:{{ object.price }}</p>
+        <hr>
+        <form action="{% url 'shop:addcart' %}" method="post">{% csrf_token %}
+            <input type="hidden" value="{{ object.pk }}" name="product">
+    <button class="uk-button uk-button-primary" type="submit">AddToCart</button>
+            </form>
+</div>
+{% endblock %}
